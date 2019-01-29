@@ -22,6 +22,7 @@ class Display extends React.Component {
             this.setState({
                 strikes: 0,
                 balls: 0,
+                fouls: 0,
             });
         }
     };
@@ -35,6 +36,7 @@ class Display extends React.Component {
             this.setState({
                 balls: 0,
                 strikes: 0,
+                fouls: 0,
             });
         }
     };
@@ -44,13 +46,20 @@ class Display extends React.Component {
             hits: this.state.hits + 1,
             balls: 0,
             strikes: 0,
+            fouls: 0,
         });
     };
 
     changeFoulsCount = e => {
-        this.setState({
-            fouls: this.state.fouls + 1,
-        });
+        if (this.state.strikes < 2) {
+            this.setState({
+                strikes: this.state.strikes + 1,
+            });
+        } else {
+            this.setState({
+                fouls: this.state.fouls + 1,
+            });
+        }
     };
 
     render() {
@@ -58,7 +67,7 @@ class Display extends React.Component {
             <div>
                 <div>
                     <div data-testid="strikesOutput">
-                        {this.state.strikes} <span> Strikes</span>
+                        {this.state.strikes + "Strikes"}
                     </div>
                     <div data-testid="ballsOutput">
                         {this.state.balls + " Balls"}
@@ -66,9 +75,9 @@ class Display extends React.Component {
                     <div data-testid="hitsOutput">
                         {this.state.hits + " Hits"}
                     </div>
-                    {/* <div data-testid="foulsOutput">
+                    <div data-testid="foulsOutput">
                         {this.state.fouls + " Fouls"}
-                    </div> */}
+                    </div>
                 </div>
                 <div>
                     <Dashboard

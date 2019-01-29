@@ -28,7 +28,12 @@ class Dashboard extends React.Component {
                     >
                         Hit
                     </button>
-                    {/* <button onClick={this.props.changeFouls}>Foul</button> */}
+                    <button
+                        data-testid="foulButton"
+                        onClick={this.props.changeFouls}
+                    >
+                        Foul
+                    </button>
                 </div>
             </div>
         );

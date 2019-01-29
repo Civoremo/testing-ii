@@ -12,7 +12,6 @@ describe("Dashboard inputs", () => {
             const button = getByTestId("strikeButton");
 
             fireEvent.click(button);
-
             expect(strikes).toHaveTextContent(1);
         });
 
@@ -22,7 +21,6 @@ describe("Dashboard inputs", () => {
             const button = getByTestId("strikeButton");
 
             fireEvent.click(button);
-
             expect(strikes).toHaveTextContent(2);
         });
 
@@ -32,7 +30,6 @@ describe("Dashboard inputs", () => {
             const button = getByTestId("strikeButton");
 
             fireEvent.click(button);
-
             expect(strikes).toHaveTextContent(0);
         });
 
@@ -42,7 +39,6 @@ describe("Dashboard inputs", () => {
             const button = getByTestId("strikeButton");
 
             fireEvent.click(button);
-
             expect(strikes).toHaveTextContent(1);
         });
     });
@@ -106,7 +102,9 @@ describe("Dashboard inputs", () => {
             const balls = getByTestId("ballsOutput");
             const hits = getByTestId("hitsOutput");
             const button = getByTestId("hitButton");
+            const strButton = getByTestId("strikeButton");
 
+            fireEvent.click(strButton);
             fireEvent.click(button);
 
             expect(strikes).toHaveTextContent(0);
@@ -140,6 +138,48 @@ describe("Dashboard inputs", () => {
             expect(strikes).toHaveTextContent(0);
             expect(balls).toHaveTextContent(0);
             expect(hits).toHaveTextContent(3);
+        });
+    });
+
+    describe("foul button clicks", () => {
+        it("renders 0 foul if current strikes are 2 or less", () => {
+            const { getByTestId } = render(<Display />);
+            const fouls = getByTestId("foulsOutput");
+            const button = getByTestId("foulButton");
+
+            fireEvent.click(button);
+
+            expect(fouls).toHaveTextContent(0);
+        });
+
+        it("renders 0 foul if current strikes are 2 or less", () => {
+            const { getByTestId } = render(<Display />);
+            const fouls = getByTestId("foulsOutput");
+            const button = getByTestId("foulButton");
+
+            fireEvent.click(button);
+
+            expect(fouls).toHaveTextContent(0);
+        });
+
+        it("renders 1 foul if current strikes are at 2", () => {
+            const { getByTestId } = render(<Display />);
+            const fouls = getByTestId("foulsOutput");
+            const button = getByTestId("foulButton");
+
+            fireEvent.click(button);
+
+            expect(fouls).toHaveTextContent(1);
+        });
+
+        it("renders 2 foul if current strikes are at 2", () => {
+            const { getByTestId } = render(<Display />);
+            const fouls = getByTestId("foulsOutput");
+            const button = getByTestId("foulButton");
+
+            fireEvent.click(button);
+
+            expect(fouls).toHaveTextContent(2);
         });
     });
 });
